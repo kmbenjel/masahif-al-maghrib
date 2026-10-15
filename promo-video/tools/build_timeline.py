@@ -49,8 +49,12 @@ def display_words(seg, lang):
     return out
 
 
-def chunk(words, lang):
-    """Split a segment's caption into short phrases, at punctuation when possible."""
+def chunk(words, lang, breaks=None):
+    """Split a segment's caption into short phrases, at punctuation when possible.
+    A segment may set its own `breaks`: the caption words that start a new phrase."""
+    if breaks:
+        edges = [0, *breaks, len(words)]
+        return [list(range(a, b)) for a, b in zip(edges, edges[1:]) if b > a]
     phrases, cur = [], []
     for i, w in enumerate(words):
         cur.append(i)
@@ -99,7 +103,7 @@ def main(lang):
             "id": seg["id"], "scene": seg["scene"], "audio": f"{seg['id']}.mp3",
             "start": round(t, 3), "speechStart": round(t + spoken[0]["start"], 3),
             "speechEnd": round(speech_end, 3), "fileDuration": meta["duration"],
-            "words": words, "chunks": chunk(words, lang)})
+            "words": words, "chunks": chunk(words, lang, seg.get("breaks"))})
         t = speech_end + seg.get("gap", 0.45)
 
     scenes, order = {}, []
