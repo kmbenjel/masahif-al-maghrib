@@ -930,9 +930,9 @@
     C.cues.hook.forEach((k, i) => add(cue(i, k) - 0.05, 'ping', 0.45));
     add(SC.globe.start - 0.1, 'whoosh', 1);
     add(cue(3, C.cues.scatter) - 0.35, 'scatter', 0.7);
-    add(cue(3, C.cues.gather) - 0.1, 'reverse', 0.8);
-    add(cue(3, C.cues.brand) - 0.25, 'impact', 1);
-    add(cue(3, C.cues.brand) - 0.15, 'shimmer', 0.7);
+    add(cue(3, C.cues.gather) - 0.1, 'reverse', 0.5);
+    add(cue(3, C.cues.brand), 'impact', 0.8);            // on the name, not in the pause before it
+    add(cue(3, C.cues.brand) + 0.1, 'shimmer', 0.6);
     add(SC.eras.start, 'whoosh', 0.7);
     C.cues.stats.forEach(k => add(cue(4, k) - 0.12, 'tick', 0.8));
     add(cue(4, C.cues.surviving) - 0.1, 'sparkle', 0.6);

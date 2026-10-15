@@ -40,17 +40,9 @@ def ffmpeg_filter(x, chain, channels=1):
 
 # ---------------------------------------------------------------- the voice
 VOICE_CHAIN = {
-    # Hamed is bright already (a lift at 6–10 kHz from the sibilants), so it is
-    # tamed up top and given a little chest
-    "ar": ",".join([
-        "highpass=f=72:p=2",
-        "equalizer=f=140:t=q:w=0.9:g=1.6",
-        "equalizer=f=360:t=q:w=1.3:g=-2",
-        "equalizer=f=3000:t=q:w=1.2:g=1.5",
-        "equalizer=f=7800:t=q:w=1.4:g=-2",
-        "deesser=i=0.5:m=0.5:f=0.5",
-        "acompressor=threshold=-22dB:ratio=3:attack=6:release=150:makeup=2.5:knee=4",
-    ]),
+    # Hamed goes out as the voice delivered it: EQ, de-essing and compression
+    # dulled his س into ص and swallowed the ends of words
+    "ar": "highpass=f=60:p=2",
     # Andrew falls off early, so he gets presence and a gentle shelf of air
     "en": ",".join([
         "highpass=f=72:p=2",
@@ -62,6 +54,9 @@ VOICE_CHAIN = {
         "acompressor=threshold=-22dB:ratio=3:attack=6:release=150:makeup=2.5:knee=4",
     ]),
 }
+
+
+ROOM_DB = {"ar": -60, "en": -17}   # no room on the Arabic voice: it blurred the consonants
 
 
 def room_ir(seconds=1.1, rt60=0.55, predelay=0.014):
@@ -225,6 +220,12 @@ SFX = {  # synth, peak level in dBFS before the event's own gain
 }
 
 
+def _hold(env, n):
+    """Running maximum over the last n samples (a ducking hold)."""
+    from scipy.ndimage import maximum_filter1d
+    return maximum_filter1d(env, size=n, origin=(n - 1) // 2)
+
+
 def main(lang):
     tl = json.loads((ROOT / "scene" / f"timeline.{lang}.json").read_text(encoding="utf-8"))
     cues = json.loads((ROOT / "build" / lang / "sfx.json").read_text(encoding="utf-8"))
@@ -240,7 +241,7 @@ def main(lang):
     voice = np.pad(voice, (0, total - len(voice)))
     irl, irr = room_ir()
     wet = np.stack([signal.fftconvolve(voice, irl)[:total], signal.fftconvolve(voice, irr)[:total]], axis=1)
-    mix = np.stack([voice, voice], axis=1) + wet * 10 ** (-17 / 20)
+    mix = np.stack([voice, voice], axis=1) + wet * 10 ** (ROOM_DB[lang] / 20)
 
     # effects, a little lower while someone is speaking
     sfx = np.zeros((total, 2))
@@ -251,8 +252,10 @@ def main(lang):
         if i >= total:
             continue
         sfx[i:i + len(x)] += x[: total - i]
-    env = np.sqrt(signal.sosfilt(signal.butter(1, 6, "low", fs=SR, output="sos"), voice ** 2).clip(0))
-    duck = 10 ** (-4 * np.clip(env / (np.percentile(env, 95) + 1e-9), 0, 1) / 20)
+    env = np.sqrt(signal.sosfilt(signal.butter(1, 12, "low", fs=SR, output="sos"), voice ** 2).clip(0))
+    # hold the ducking a quarter second past each word, so endings are not covered
+    env = _hold(env, int(0.25 * SR))
+    duck = 10 ** (-12 * np.clip(env / (np.percentile(env, 95) + 1e-9), 0, 1) / 20)
     mix += sfx * duck[:, None]
 
     # room tone, so silence never drops to digital zero
