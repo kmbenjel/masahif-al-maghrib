@@ -7,7 +7,8 @@
 Reads voice/script.<lang>.json and writes build/voice/<lang>/<id>.mp3 and
 <id>.json (the words, with start and end in seconds). Uses Microsoft's neural
 voices through the edge-tts package (pip install edge-tts). Behind a proxy,
-HTTPS_PROXY is passed through.
+HTTPS_PROXY is passed through. A segment's own "rate" overrides the voice's,
+to keep the pace even from one sentence to the next.
 
 A segment may list "hold" edits for sounds the voice ignores in the spelling,
 such as a shadda or a sukun it rushes: {"word": 2, "at": 0.237, "add": 0.09}
@@ -108,7 +109,7 @@ def probe_duration(path):
 
 async def synth(seg, cfg, out_dir):
     comm = edge_tts.Communicate(
-        seg["say"], cfg["voice"], rate=cfg.get("rate", "+0%"),
+        seg["say"], cfg["voice"], rate=seg.get("rate", cfg.get("rate", "+0%")),
         pitch=cfg.get("pitch", "+0Hz"), boundary="WordBoundary",
         proxy=os.environ.get("HTTPS_PROXY"))
     audio, words = bytearray(), []
@@ -125,7 +126,7 @@ async def synth(seg, cfg, out_dir):
     else:
         mp3.write_bytes(audio)
     meta = {"id": seg["id"], "say": seg["say"], "voice": cfg["voice"],
-            "rate": cfg.get("rate"), "pitch": cfg.get("pitch"),
+            "rate": seg.get("rate", cfg.get("rate")), "pitch": cfg.get("pitch"),
             "duration": round(probe_duration(mp3), 3), "words": words}
     (out_dir / f"{seg['id']}.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
