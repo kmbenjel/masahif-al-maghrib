@@ -784,11 +784,11 @@
         const kc = P(t, tcy, tcy + 0.5, E.out3);
         put(city, { y: 16 * (1 - kc), s: 0.9 + 0.1 * P(t, tcy, tcy + 0.5, E.outBack), o: kc });
         const ta = cue(7, C.cues.award) - 0.15;
-        const tb = [cue(7, C.cues.teach) - 0.15, ta, ta + 1.1];
+        const tb = [cue(7, C.cues.grad) - 0.15, cue(7, C.cues.teach) - 0.15, ta];   // diploma, teaching, prize
         badges.forEach((d, i) => {
           const k = P(t, tb[i], tb[i] + 0.55, E.out3);
           put(d, { x: -FWD * 50 * (1 - k), o: k });
-          const pulse = i === 1 ? Math.max(0, 1 - Math.abs(t - (ta + 0.5)) / 0.6) : 0;
+          const pulse = i === 2 ? Math.max(0, 1 - Math.abs(t - (ta + 0.5)) / 0.6) : 0;
           d.style.boxShadow = `inset 0 0 0 ${1.5 + 1.5 * pulse}px rgba(233,200,121,${(0.22 + 0.6 * pulse).toFixed(3)}), 0 0 ${(40 * pulse).toFixed(1)}px rgba(233,200,121,${(0.35 * pulse).toFixed(3)})`;
         });
       },

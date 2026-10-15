@@ -78,12 +78,12 @@ const CONTENT = {
     },
     callouts: ['بطاقة لكل مصحف', 'عيّنات مقرّبة من الخط', 'روابط إلى النسخ المرقمنة'],
     author: {
-      kicker: 'عن المُعِدّ', name: 'إبراهيم حسني إدريسي',
+      kicker: 'عن المُعِدّ', name: 'إبراهيم الحسني الإدريسي',
       role: 'خطاط وباحث في المخطوطات والخطوط المغربية', city: 'فاس',
       badges: [
+        { icon: 'cap', text: 'شهادة التكوين في فن الخط، جامع القرويين بفاس', year: '2019' },
         { icon: 'pen', text: 'أستاذ الخطوط المغربية: المبسوط والمجوهر والثلث المغربي والأندلسي' },
         { icon: 'medal', text: 'الجائزة التشجيعية لجائزة محمد السادس لفن الخط المغربي', year: '2025' },
-        { icon: 'cap', text: 'شهادة التكوين في فن الخط، جامع القرويين بفاس', year: '2019' },
       ],
     },
     chips: ['موثّق المصادر', 'عربي · English'],
@@ -91,7 +91,7 @@ const CONTENT = {
       images: 'صور المخطوطات من المكتبات والمتاحف المذكورة في الموقع' },
     cues: { hook: [4, 5, 1], scatter: 2, gather: 6, brand: 9, stats: [0, 3, 5], surviving: 9, lost: 12,
       caliph: 3, sultan: 5, gold: 7, silver: 12, card: 0, samples: 5, links: 10,
-      name: 5, role: 3, teach: 8, city: 11, award: 12, sourced: 0, bilingual: 2 },
+      name: 5, role: 3, grad: 8, teach: 12, city: 15, award: 16, sourced: 0, bilingual: 2 },
   },
   en: {
     brand: 'Masahif al-Maghrib',
@@ -122,9 +122,9 @@ const CONTENT = {
       kicker: 'About the author', name: 'Ibrahim Hassani Idrissi',
       role: 'Calligrapher and manuscript researcher', city: 'Fez',
       badges: [
+        { icon: 'cap', text: 'Diploma in the Art of Calligraphy, al-Qarawiyyin, Fez', year: '2019' },
         { icon: 'pen', text: 'Teaches Maghribi scripts: Mabsut, Mujawhar, Maghribi Thuluth and Andalusi' },
         { icon: 'medal', text: 'Encouragement Prize, Mohammed VI Award for Maghribi Calligraphy', year: '2025' },
-        { icon: 'cap', text: 'Diploma in the Art of Calligraphy, al-Qarawiyyin, Fez', year: '2019' },
       ],
     },
     chips: ['Fully sourced', 'English · عربي'],
@@ -132,6 +132,6 @@ const CONTENT = {
       images: 'Manuscript images courtesy of the libraries and museums credited on the site' },
     cues: { hook: [8, 7, 3], scatter: 4, gather: 8, brand: 14, stats: [0, 2, 4], surviving: 9, lost: 12,
       caliph: 5, sultan: 8, gold: 13, silver: 20, card: 0, samples: 9, links: 15,
-      name: 2, role: 5, city: 10, teach: 12, award: 16, sourced: 0, bilingual: 3 },
+      name: 2, role: 5, city: 10, grad: 12, teach: 16, award: 20, sourced: 0, bilingual: 3 },
   },
 };
