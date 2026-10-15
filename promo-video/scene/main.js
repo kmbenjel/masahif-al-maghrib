@@ -784,7 +784,7 @@
         const kc = P(t, tcy, tcy + 0.5, E.out3);
         put(city, { y: 16 * (1 - kc), s: 0.9 + 0.1 * P(t, tcy, tcy + 0.5, E.outBack), o: kc });
         const ta = cue(7, C.cues.award) - 0.15;
-        const tb = [cue(7, C.cues.grad) - 0.15, cue(7, C.cues.teach) - 0.15, ta];   // diploma, teaching, prize
+        const tb = [cue(7, C.cues.teach) - 0.15, cue(7, C.cues.grad) - 0.15, ta];   // teaching, diploma, prize
         badges.forEach((d, i) => {
           const k = P(t, tb[i], tb[i] + 0.55, E.out3);
           put(d, { x: -FWD * 50 * (1 - k), o: k });
