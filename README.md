@@ -149,6 +149,6 @@ As part of the platform's public launch, an automated **multi-agent media and vi
 ---
 
 **إعداد وتحقيق:** إبراهيم حسني إدريسي، خطاط وباحث في الخطوط المغربية والمصاحف من فاس · [واتساب](https://wa.me/212681769161)  
-**التصميم والهندسة الرقمية:** [خالد بنجلون](https://benjelloun.dev) (Khalid Benjelloun)
+**التصميم والهندسة الرقمية:** تم بناؤه وتطويره بواسطة [خالد بنجلون](https://benjelloun.dev) عبر [Google Antigravity](https://github.com/google) ونماذج الذكاء الاصطناعي (Claude Code).
 
 </div>
