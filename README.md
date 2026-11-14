@@ -115,16 +115,15 @@ As part of the platform's public launch, an automated **multi-agent media and vi
 
 ---
 
-## 📸 Visual Plates, Reader Interface & Video Snapshot Showcase
+## 📸 Visual Plates, Reader Interface & Manuscript Showcase
 
-> [!NOTE]
-> Below are placeholder cards for high-resolution manuscript plates, the interactive reader UI, and promotional video releases.
+Authentic live captures from **[masahif-al-maghrib.com](https://masahif-al-maghrib.com)**:
 
 <div align="center">
 
-| 📜 Historical Manuscript Plate Viewer | ⏳ Interactive Chronological Timeline |
+| 🏛️ Bilingual Exhibition Portal (`masahif-al-maghrib.com`) | 📜 Marinid Manuscript Plate (`مصحف السلطان أبي سعيد`) |
 |:---:|:---:|
-| ![Manuscript Plate Placeholder](https://placehold.co/500x700/1e293b/38bdf8?text=High-Res+Colophon+Plate+Viewer) <br> *Deep-zoom inspection of historical scribal colophons* | ![Timeline Placeholder](https://placehold.co/500x700/1e293b/10b981?text=Dynasty+Chronological+Timeline) <br> *Cross-dynasty temporal sorting & verified dating* |
+| ![Main Moroccan Quran Manuscripts Portal](docs/screenshots/hero-landing.png) <br> *Arabic & English dynasty-by-dynasty digital exhibition portal* | ![Sultan Abu Said Uthman Marinid Quran Manuscript Plate](docs/screenshots/manuscript-viewer.png) <br> *Deep-zoom inspection of historical scribal colophons and metadata cards* |
 
 </div>
 
@@ -132,9 +131,9 @@ As part of the platform's public launch, an automated **multi-agent media and vi
 
 <div align="center">
 
-| 🎬 Bilingual Promo Video Cut (Arabic / English) | 📱 Responsive Mobile Typography & Layout |
+| ⏳ Dynasty Era Guide & Timeline (`مصاحف بني مرين`) | 📱 Responsive Mobile Arabic RTL Reader |
 |:---:|:---:|
-| ![Video Reel Placeholder](https://placehold.co/500x700/1e293b/e11d48?text=Promo+Video+Production+Cut) <br> *Cinematic multi-agent video release showcasing manuscript art* | ![Mobile Reader Placeholder](https://placehold.co/500x700/1e293b/f59e0b?text=Mobile+RTL+Reader) <br> *100/100 PageSpeed with bespoke Maghrebi typographic stack* |
+| ![Marinid Era Catalogue & Timeline](docs/screenshots/historical-timeline.png) <br> *Era-by-era historical index, dynastic timeline, and manuscript cards* | ![Mobile RTL Reader View](docs/screenshots/mobile-rtl.png) <br> *Mobile-first Arabic RTL layout with bespoke Maghrebi typography* |
 
 </div>
 
